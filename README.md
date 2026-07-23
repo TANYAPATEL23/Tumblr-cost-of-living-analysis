@@ -214,6 +214,6 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 
 A collaborative analytics project, built with a project team.
 
-Tanya Patel is an MS Business Analytics Candidate at Simon Business School, University of Rochester (December 2026), targeting business analyst and data analytics roles in entertainment, beauty, luxury, retail, and CPG industries.
+Tanya Patel is an MS Business Analytics Candidate at Simon Business School, University of Rochester (December 2026).
 
 [LinkedIn](https://www.linkedin.com/in/tanyapatel23/) | [Email](mailto:tpatel18@simon.rochester.edu)
