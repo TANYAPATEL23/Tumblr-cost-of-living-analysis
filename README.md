@@ -13,16 +13,16 @@
 
 > A platform-wide sentiment and thematic analytics study
 
-**Collaborative analytics project** — contributed as part of a project team, working with a client-facing brief for a social platform's content and community health function.
+**Collaborative analytics project.** Contributed as part of a project team, working with a client-facing brief for a social platform's content and community health function.
 
 ---
 
 ## Client & Consulting Track
 
 **Track 1: Platform Manager-Facing Analytics**
-Client: Tumblr Platform Management Team — responsible for content governance, trend intelligence, and community health monitoring.
+Client: Tumblr Platform Management Team, responsible for content governance, trend intelligence, and community health monitoring.
 
-**Scope:** Platform-wide posts via the Tumblr API v2 `/tagged` endpoint. 2,330 posts across 1,377 unique blogs, 2021–2026, spanning 9 cost-of-living-related hashtags.
+**Scope:** Platform-wide posts via the Tumblr API v2 `/tagged` endpoint. 2,330 posts across 1,377 unique blogs, 2021-2026, spanning 9 cost-of-living-related hashtags.
 
 ## Business Context
 
@@ -30,9 +30,9 @@ Since 2021, the cost-of-living crisis has become one of the defining social issu
 
 Tumblr's platform team lacked automated tools to monitor sentiment, thematic structure, and engagement dynamics at scale. This project addressed that gap with a three-component NLP pipeline:
 
-- **Sentiment classification** — VADER (lexicon baseline) + RoBERTa (transformer-based) across 9 economic hashtags
-- **Thematic topic modeling** — LDA to surface major cost-of-living sub-themes
-- **Engagement analysis** — linking sentiment to note counts (likes + reblogs)
+- **Sentiment classification.** VADER (lexicon baseline) plus RoBERTa (transformer-based) across 9 economic hashtags.
+- **Thematic topic modeling.** LDA to surface major cost-of-living sub-themes.
+- **Engagement analysis.** Linking sentiment to note counts (likes and reblogs).
 
 **Core research question:** *What sentiment do Tumblr users express toward cost-of-living topics, which thematic sub-categories drive the strongest emotional reactions, and how do sentiment and engagement vary across topics?*
 
@@ -40,8 +40,8 @@ Tumblr's platform team lacked automated tools to monitor sentiment, thematic str
 
 ## Data Collection & Cleaning
 
-- Source: Tumblr API v2 `/tagged` endpoint, timestamp-based pagination (Jan 2021 → Apr 2026)
-- Target: up to 500 posts per tag · plain text only · deduplicated
+- Source: Tumblr API v2 `/tagged` endpoint, timestamp-based pagination (Jan 2021 to Apr 2026)
+- Target: up to 500 posts per tag, plain text only, deduplicated
 
 | Cleaning Step | Filter | Posts Remaining |
 |---|---|---|
@@ -55,7 +55,7 @@ Tumblr's platform team lacked automated tools to monitor sentiment, thematic str
 
 | Hashtag | Posts | Thematic Focus |
 |---|---|---|
-| #cost of living | 314 | Broad financial stress & personal commentary |
+| #cost of living | 314 | Broad financial stress and personal commentary |
 | #student loans | 295 | Loan repayment, forgiveness debates, policy |
 | #student debt | 288 | Debt burden, credit impact, borrower stories |
 | #mortgage | 280 | Rates, homeownership barriers, market dynamics |
@@ -70,7 +70,7 @@ Tumblr's platform team lacked automated tools to monitor sentiment, thematic str
 ## Key Findings
 
 ### Sentiment Landscape
-- **Housing Crisis is the most negative topic.** Mean sentiment sits at −0.15, with 56.5% of posts reading Negative. Users express systemic despair here more than on any other economic topic.
+- **Housing Crisis is the most negative topic.** Mean sentiment sits at -0.15, with 56.5% of posts reading Negative. Users express systemic despair here more than on any other economic topic.
 - **Mortgage and Groceries are the most positive**, at +0.47 and +0.40. Both are driven by aspiration, deal-sharing, and coping humor rather than genuine optimism about the underlying issue.
 - **Student loans and debt sit in contested territory**, roughly 43% Negative and 52% Positive. Frustration with the system coexists with hope for policy relief.
 
@@ -84,9 +84,9 @@ Tumblr's platform team lacked automated tools to monitor sentiment, thematic str
 | Affordability | +0.262 | 30.4% | 59.5% | More solution-focused framing |
 | Rent | +0.323 | 25.9% | 62.7% | Community solidarity posts dominate |
 | Groceries | +0.401 | 19.8% | 67.4% | Deal-sharing and humor offset complaints |
-| Mortgage | +0.468 | 20.0% | 71.4% | Most positive — homeownership aspiration |
+| Mortgage | +0.468 | 20.0% | 71.4% | Most positive: homeownership aspiration |
 
-### Model Comparison — VADER vs. RoBERTa
+### Model Comparison: VADER vs. RoBERTa
 
 Across the full 2,330-post corpus, VADER and RoBERTa agreed on sentiment label only **45.5%** of the time. On a manually labeled validation sample (n=200), RoBERTa substantially outperformed VADER:
 
@@ -130,10 +130,10 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 *The top 20 tags appearing alongside cost-of-living posts. Politics, real estate, and finance dominate, so this reads as a systemic conversation rather than individual complaints.*
 
 **Sentiment Analysis**
-![Sentiment Distribution — VADER](images/sentiment_distribution_vader.png)
+![Sentiment Distribution VADER](images/sentiment_distribution_vader.png)
 *Sentiment breakdown by topic using VADER.*
 
-![Sentiment Distribution — RoBERTa](images/sentiment_distribution_roberta.png)
+![Sentiment Distribution RoBERTa](images/sentiment_distribution_roberta.png)
 *The same breakdown using RoBERTa. It classifies a much larger share of posts as Neutral than VADER does.*
 
 ![VADER vs RoBERTa Agreement](images/vader_vs_roberta_agreement.png)
@@ -147,17 +147,17 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 *How posts split across the five LDA topics. Housing & Wage Pressure makes up 52% of the corpus on its own.*
 
 ![Mean Sentiment by LDA Topic](images/lda_mean_sentiment_by_topic.png)
-*Average sentiment score for each topic. Housing & Wage Pressure is the only one sitting near neutral to negative; everything else skews positive.*
+*Average sentiment score for each topic. Housing & Wage Pressure is the only one sitting near neutral to negative. Everything else skews positive.*
 
 **Engagement**
 ![Engagement by Sentiment Quartile](images/engagement_by_sentiment_quartile.png)
 *Average likes and reblogs by sentiment quartile. Moderately positive posts get the most engagement overall.*
 
 **Model Validation**
-![Confusion Matrix — VADER](images/confusion_matrix_vader.png)
+![Confusion Matrix VADER](images/confusion_matrix_vader.png)
 *VADER tested against a manually labeled sample of 200 posts: 23.5% accuracy.*
 
-![Confusion Matrix — RoBERTa](images/confusion_matrix_roberta.png)
+![Confusion Matrix RoBERTa](images/confusion_matrix_roberta.png)
 *RoBERTa on the same sample: 49.5% accuracy.*
 
 ---
@@ -166,9 +166,9 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 
 | Capability | Business Value for Tumblr |
 |---|---|
-| Sentiment Monitoring | Structured view of emotional engagement with cost-of-living content; track mood shifts over time |
+| Sentiment Monitoring | Structured view of emotional engagement with cost-of-living content. Tracks mood shifts over time. |
 | Thematic Intelligence | Identifies which economic dimensions (housing, debt, wages) resonate most strongly with users |
-| Engagement Insights | Moderately-positive posts drive the highest mean engagement; identifies viral ceiling patterns |
+| Engagement Insights | Moderately positive posts drive the highest mean engagement. Identifies viral ceiling patterns. |
 | Scalable Pipeline | Replicable methodology across any high-volume social issue on the platform |
 | Community Health | Early detection of surges in negative sentiment around emerging economic flashpoints |
 
@@ -177,25 +177,25 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 | Recommendation | Rationale | Priority |
 |---|---|---|
 | Deploy RoBERTa-based sentiment monitoring dashboard | Real-time tracking of economic discourse emotional health | High |
-| Flag housing crisis sentiment spikes for review | Most negative topic; surges may signal emerging community crises | High |
-| Surface moderately-positive economic content in feeds | 107-note mean vs. 31-note mean supports engagement uplift | Medium |
+| Flag housing crisis sentiment spikes for review | Most negative topic. Surges may signal emerging community crises. | High |
+| Surface moderately positive economic content in feeds | 107-note mean vs. 31-note mean supports engagement uplift | Medium |
 | Build topic-tagged content recommendation system | LDA topics align with distinct community interests and sentiment profiles | Medium |
 
 ---
 
 ## Limitations
 
-- Engagement means are heavily skewed by viral outliers; median note counts are near zero across all groups, limiting reliable inference from subgroup mean comparisons
-- API rate limits constrained collection to ~500 posts per tag; higher-volume tags may be biased toward recent content
-- Text-only analysis misses image, GIF, and video content, which constitutes a significant portion of Tumblr posts
-- Manual validation sample is class-imbalanced (78% Neutral), limiting Positive/Negative class evaluation
+- Engagement means are heavily skewed by viral outliers. Median note counts are near zero across all groups, which limits reliable inference from subgroup mean comparisons.
+- API rate limits constrained collection to roughly 500 posts per tag. Higher-volume tags may be biased toward recent content.
+- Text-only analysis misses image, GIF, and video content, which makes up a significant portion of Tumblr posts.
+- The manual validation sample is class-imbalanced (78% Neutral), which limits Positive/Negative class evaluation.
 
 ## Future Work
 
 - BERTopic for more coherent, temporally-trackable topic clusters
-- Larger, class-balanced validation set for improved Positive/Negative evaluation
-- Domain-adapted sentiment model fine-tuned specifically on Tumblr economic discourse
-- Multimodal analysis — image captioning + sentiment fusion
+- A larger, class-balanced validation set for improved Positive/Negative evaluation
+- A domain-adapted sentiment model fine-tuned specifically on Tumblr economic discourse
+- Multimodal analysis combining image captioning with sentiment fusion
 
 ---
 
