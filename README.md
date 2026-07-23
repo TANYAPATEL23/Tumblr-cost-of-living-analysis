@@ -26,7 +26,7 @@ Client: Tumblr Platform Management Team — responsible for content governance, 
 
 ## Business Context
 
-Since 2021, the cost-of-living crisis has become one of the defining social issues for Gen Z and Millennials — Tumblr's core user base. Inflation, record rents, student debt, and wage stagnation drive sustained, high-volume discourse tagged with `#costofliving`, `#rent`, `#studentloans`, `#housingcrisis`, and related hashtags.
+Since 2021, the cost-of-living crisis has become one of the defining social issues for Gen Z and Millennials, who make up Tumblr's core user base. Inflation, record rents, student debt, and wage stagnation drive sustained, high-volume discourse tagged with `#costofliving`, `#rent`, `#studentloans`, `#housingcrisis`, and related hashtags.
 
 Tumblr's platform team lacked automated tools to monitor sentiment, thematic structure, and engagement dynamics at scale. This project addressed that gap with a three-component NLP pipeline:
 
@@ -70,9 +70,9 @@ Tumblr's platform team lacked automated tools to monitor sentiment, thematic str
 ## Key Findings
 
 ### Sentiment Landscape
-- **Housing Crisis is the most negative topic** (mean sentiment −0.15, 56.5% Negative) — users express systemic despair more than on any other economic topic.
-- **Mortgage and Groceries are the most positive** (+0.47 / +0.40), driven by aspiration, deal-sharing, and coping humor.
-- **Student loans and debt sit in contested territory** (~43% Negative / ~52% Positive) — frustration with the system coexists with hope for policy relief.
+- **Housing Crisis is the most negative topic.** Mean sentiment sits at −0.15, with 56.5% of posts reading Negative. Users express systemic despair here more than on any other economic topic.
+- **Mortgage and Groceries are the most positive**, at +0.47 and +0.40. Both are driven by aspiration, deal-sharing, and coping humor rather than genuine optimism about the underlying issue.
+- **Student loans and debt sit in contested territory**, roughly 43% Negative and 52% Positive. Frustration with the system coexists with hope for policy relief.
 
 | Topic | Mean Sentiment | % Negative | % Positive | Interpretation |
 |---|---|---|---|---|
@@ -96,7 +96,7 @@ Across the full 2,330-post corpus, VADER and RoBERTa agreed on sentiment label o
 | Weighted F1 | 0.26 | 0.55 |
 | Neutral Recall | 13% | 46% |
 
-This gap reflects a known limitation of lexicon-based sentiment tools: VADER fires on individual words ("free," "forgiveness," "progress") without parsing irony, while much of Tumblr's cost-of-living discourse is informational, dry, or ironic. The clearest example: the post *"record profits are unpaid wages"* (34,211 notes) — a clearly negative economic claim — was scored **Positive** by VADER and correctly labeled **Neutral** by RoBERTa.
+This gap reflects a known limitation of lexicon-based sentiment tools. VADER fires on individual words like "free," "forgiveness," and "progress" without parsing irony, while much of Tumblr's cost-of-living discourse is informational, dry, or ironic. A good example is the post *"record profits are unpaid wages"* (34,211 notes), which is clearly a negative economic claim. VADER scored it Positive. RoBERTa correctly labeled it Neutral.
 
 ### LDA Topic Modeling
 
@@ -110,13 +110,13 @@ Five substantive topics emerged after excluding a spam cluster:
 | Mortgage & Credit Stress | 92 | loan, mortgage, credit, rate, payment | +0.470 |
 | Groceries & Daily Costs | 262 | grocery, quality, store, delivery | +0.515 |
 
-**Housing & Wage Pressure dominates at 52% of all posts** and has the lowest mean sentiment — essentially neutral, sustained ambivalence rather than acute crisis language.
+**Housing & Wage Pressure dominates at 52% of all posts.** It also has the lowest mean sentiment of any topic, though the number itself is only slightly negative. That points to sustained ambivalence rather than acute crisis language.
 
 ### Engagement vs. Sentiment
 
-Posts in the moderately-positive sentiment quartile generate the highest mean engagement (107 notes vs. 31 for the most-negative quartile) — though all quartile *medians* are near zero, reflecting Tumblr's extreme power-law engagement distribution. A small number of viral posts drive the mean differences.
+Posts in the moderately-positive sentiment quartile generate the highest mean engagement, 107 notes on average versus 31 for the most-negative quartile. That said, all quartile *medians* sit near zero, which reflects Tumblr's extreme power-law engagement distribution. A small number of viral posts are driving those mean differences, not a broad shift in typical engagement.
 
-**Notable case:** the #housingcrisis tag is simultaneously the most negative topic overall (56.5% Negative) *and* home to the highest mean note count among positive posts (322 avg), driven by two viral posts (17,508 and 11,093 notes) about hopeful, solution-oriented housing content. Negative content reaches more people on average; positive content produces the largest viral spikes.
+**Notable case:** the #housingcrisis tag is simultaneously the most negative topic overall (56.5% Negative) and home to the highest mean note count among positive posts (322 average). Two viral posts, 17,508 and 11,093 notes, about hopeful, solution-oriented housing content are responsible for that. On average, negative content reaches more people, but positive content produces the largest individual spikes.
 
 ---
 
@@ -124,41 +124,41 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 
 **Data Collection**
 ![Post Volume by Hashtag](images/hashtag_post_volume.png)
-*Post volume collected per hashtag, 2,330 posts across 9 economic tags.*
+*Posts collected per hashtag: 2,330 total across 9 economic tags.*
 
 ![Tag Co-occurrence](images/tag_cooccurrence.png)
-*Top 20 tags co-occurring with cost-of-living discourse — confirms the conversation is systemic and politicized, not individual complaint.*
+*The top 20 tags appearing alongside cost-of-living posts. Politics, real estate, and finance dominate, so this reads as a systemic conversation rather than individual complaints.*
 
 **Sentiment Analysis**
 ![Sentiment Distribution — VADER](images/sentiment_distribution_vader.png)
-*Sentiment breakdown by topic, VADER model.*
+*Sentiment breakdown by topic using VADER.*
 
 ![Sentiment Distribution — RoBERTa](images/sentiment_distribution_roberta.png)
-*Sentiment breakdown by topic, RoBERTa model — note the higher Neutral share versus VADER.*
+*The same breakdown using RoBERTa. It classifies a much larger share of posts as Neutral than VADER does.*
 
 ![VADER vs RoBERTa Agreement](images/vader_vs_roberta_agreement.png)
-*Row-normalized agreement heatmap between the two models — only 45.5% overall agreement.*
+*A row-normalized heatmap comparing the two models. They only agree on 45.5% of posts.*
 
 ![Post Volume vs Sentiment Over Time](images/post_volume_sentiment_over_time.png)
-*Temporal view, 2021–2026 — sentiment turns most negative exactly when post volume spikes.*
+*Post volume and sentiment plotted from 2021 to 2026. Sentiment dips lowest right when volume spikes.*
 
 **Topic Modeling**
 ![LDA Topic Distribution](images/lda_topic_distribution.png)
-*Post volume by LDA topic — Housing & Wage Pressure dominates at 52% of the corpus.*
+*How posts split across the five LDA topics. Housing & Wage Pressure makes up 52% of the corpus on its own.*
 
 ![Mean Sentiment by LDA Topic](images/lda_mean_sentiment_by_topic.png)
-*Mean sentiment score by topic — Housing & Wage Pressure is the only topic near-neutral/negative.*
+*Average sentiment score for each topic. Housing & Wage Pressure is the only one sitting near neutral to negative; everything else skews positive.*
 
 **Engagement**
 ![Engagement by Sentiment Quartile](images/engagement_by_sentiment_quartile.png)
-*Average note count (likes + reblogs) by sentiment quartile — moderately-positive posts drive the highest mean engagement.*
+*Average likes and reblogs by sentiment quartile. Moderately positive posts get the most engagement overall.*
 
 **Model Validation**
 ![Confusion Matrix — VADER](images/confusion_matrix_vader.png)
-*VADER vs. human-labeled validation sample (n=200) — 23.5% accuracy.*
+*VADER tested against a manually labeled sample of 200 posts: 23.5% accuracy.*
 
 ![Confusion Matrix — RoBERTa](images/confusion_matrix_roberta.png)
-*RoBERTa vs. human-labeled validation sample (n=200) — 49.5% accuracy.*
+*RoBERTa on the same sample: 49.5% accuracy.*
 
 ---
 
@@ -214,6 +214,6 @@ Posts in the moderately-positive sentiment quartile generate the highest mean en
 
 A collaborative analytics project, built with a project team.
 
-Tanya Patel is an MS Business Analytics Candidate — Simon Business School, University of Rochester (December 2026), targeting business analyst and data analytics roles in entertainment, beauty, luxury, retail, and CPG industries.
+Tanya Patel is an MS Business Analytics Candidate at Simon Business School, University of Rochester (December 2026), targeting business analyst and data analytics roles in entertainment, beauty, luxury, retail, and CPG industries.
 
 [LinkedIn](https://www.linkedin.com/in/tanyapatel23/) | [Email](mailto:tpatel18@simon.rochester.edu)
